@@ -1,4 +1,5 @@
 import { createAppSlice } from "store/createAppSlice"
+import { PayloadAction } from "@reduxjs/toolkit"
 
 const counterInintialState = {
   count: 0,
@@ -16,6 +17,12 @@ export const counterSlice = createAppSlice({
     },
     minus: state => {
       state.count = state.count - 1
+    },
+    multiply: (state, action: PayloadAction<number>) => {
+      state.count = Number((state.count * action.payload).toFixed(2))
+    },
+    divide: (state, action: PayloadAction<number>) => {
+      state.count = Number((state.count / action.payload).toFixed(2))
     },
   },
   // selectors - мы прописываем, какие именно данные мы хотим отдать компонентам
